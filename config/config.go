@@ -64,3 +64,9 @@ func DefautlConfig() (c Config) {
 		},
 	}
 }
+
+func WriteConfig(w io.Writer, c Config) (err error) {
+	enc := toml.NewEncoder(w)
+	err = enc.Encode(c)
+	return
+}
