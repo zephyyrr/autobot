@@ -61,11 +61,16 @@ func main() {
 	shutdown()
 }
 
-func rollOut() {
+func rollOut(actions []c.Action) error {
 	// Pull from git
 	// Issue build command (read from config)
 	// ???
 	// Profit!
+
+	for _, action := range actions {
+		log.Printf("%s: (%s) %s", action.Type, action.Payload)
+	}
+	return nil
 }
 
 func shutdown() {
