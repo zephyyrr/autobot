@@ -71,3 +71,7 @@ func shutdown() {
 	// Allows clean shutdowns.
 	processes.Wait()
 }
+
+func hookAddress(req *http.Request) string {
+	return fmt.Sprintf("%s%s", req.Host, "/hook")
+}
