@@ -10,6 +10,7 @@ import (
 func init() {
 	http.HandleFunc("/hook", handleHook)
 	http.HandleFunc("/", handleRoot)
+	http.HandleFunc("/config", handleConfig)
 }
 
 func handleRoot(w http.ResponseWriter, req *http.Request) {
@@ -38,4 +39,6 @@ func handleHook(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
+func handleConfig(w http.ResponseWriter, req *http.Request) {
+	c.WriteConfig(w, c.DefautlConfig())
 }
