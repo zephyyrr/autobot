@@ -1,13 +1,10 @@
 package config
 
 import (
-	"flag"
 	"io"
 
 	"github.com/BurntSushi/toml"
 )
-
-var configfile = flag.String("f", "Config filename", "autobot.json")
 
 type Config struct {
 }
