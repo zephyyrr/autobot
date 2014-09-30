@@ -46,3 +46,21 @@ func LoadConfig(r io.Reader) (c Config, err error) {
 	_, err = toml.DecodeReader(r, &c)
 	return
 }
+
+func DefautlConfig() (c Config) {
+	return Config{
+		Address: "",
+		Port:    8080,
+		Events: map[string][]Action{
+			Deployment: []Action{
+				Action{Type: Test, Payload: "github.com/zephyyrr/autobot"},
+				Action{Type: Install, Payload: "github.com/zephyyrr/autobot"},
+				Action{Type: Command, Payload: "echo 'test'"},
+			},
+			Push: []Action{
+				Action{Type: Install, Payload: "github.com/zephyyrr/autobot"},
+				Action{Type: Install, Payload: "github.com/zephyyrr/goda"},
+			},
+		},
+	}
+}
