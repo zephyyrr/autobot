@@ -10,13 +10,13 @@ import (
 	"os/signal"
 	"sync"
 
-	"github.com/zephyyrr/autobot/config"
+	c "github.com/zephyyrr/autobot/config"
 )
 
 var (
-	configuration config.Config
-	processes     sync.WaitGroup
-	configfile    = flag.String("f", "autobot.toml", "Config filename")
+	config     c.Config
+	processes  sync.WaitGroup
+	configfile = flag.String("f", "autobot.toml", "Config filename")
 )
 
 func init() {
@@ -27,10 +27,11 @@ func init() {
 	if err != nil {
 		log.Fatalf("Unable to read open config file %s. %s", *configfile, err)
 	}
-	configuration, err = config.LoadConfig(f)
+	config, err = c.LoadConfig(f)
 	if err != nil {
 		log.Fatalln("Unable to parse config file.", err)
 	}
+
 }
 
 func main() {
