@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
+
+	c "github.com/zephyyrr/autobot/config"
 )
 
 func init() {
@@ -21,5 +23,19 @@ func handleRoot(w http.ResponseWriter, req *http.Request) {
 func handleHook(w http.ResponseWriter, req *http.Request) {
 	processes.Add(1)
 	defer processes.Done()
-	http.Error(w, "", http.StatusNotImplemented)
+
+	event := req.Header.Get("Sch-Github-Event")
+
+	switch event {
+	case c.Ping:
+	default:
+		//Unknown event
+		//Log and exit
+	}
+
+	if err := rollOut(config.Events[event]); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
 }
