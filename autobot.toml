@@ -1,0 +1,24 @@
+Address = ""
+Port = 8080
+
+[Events]
+
+  [[Events.deployment]]
+    Type = "test"
+    Payload = "github.com/zephyyrr/autobot"
+
+  [[Events.deployment]]
+    Type = "install"
+    Payload = "github.com/zephyyrr/autobot"
+
+  [[Events.deployment]]
+    Type = "command"
+    Payload = "echo 'test'"
+
+  [[Events.push]]
+    Type = "install"
+    Payload = "github.com/zephyyrr/autobot"
+
+  [[Events.push]]
+    Type = "install"
+    Payload = "github.com/zephyyrr/goda"
