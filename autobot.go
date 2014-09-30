@@ -22,7 +22,7 @@ func init() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
 	flag.Parse()
-	f, err := os.Open(configfile)
+	f, err := os.Open(*configfile)
 	if err != nil {
 		log.Fatalln("Unable to read config file.", f)
 	}
