@@ -13,9 +13,9 @@ import (
 )
 
 var (
-	configuration Config
+	configuration config.Config
 	processes     sync.WaitGroup
-	configfile    = flag.String("f", "Config filename", "autobot.json")
+	configfile    = flag.String("f", "autobot.toml", "Config filename")
 )
 
 func init() {
@@ -24,9 +24,12 @@ func init() {
 	flag.Parse()
 	f, err := os.Open(*configfile)
 	if err != nil {
-		log.Fatalln("Unable to read config file.", f)
+		log.Fatalf("Unable to read open config file %s. %s", *configfile, err)
 	}
-	config.LoadConfig(f)
+	configuration, err = config.LoadConfig(f)
+	if err != nil {
+		log.Fatalln("Unable to parse config file.", err)
+	}
 }
 
 func main() {
