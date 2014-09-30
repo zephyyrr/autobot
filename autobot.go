@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"net"
 	"net/http"
@@ -60,11 +61,13 @@ func main() {
 }
 
 func rollOut() {
-
+	// Pull from git
+	// Issue build command (read from config)
+	// ???
+	// Profit!
 }
 
 func shutdown() {
-
 	// Allows clean shutdowns.
 	processes.Wait()
 }
