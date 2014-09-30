@@ -9,13 +9,19 @@ func init() {
 }
 
 func handlePush(w http.ResponseWriter, req *http.Request) {
+	processes.Add(1)
+	defer processes.Done()
 	http.Error(w, "", http.StatusNotImplemented)
 }
 
 func handleDeploy(w http.ResponseWriter, req *http.Request) {
+	processes.Add(1)
+	defer processes.Done()
 	http.Error(w, "", http.StatusNotImplemented)
 }
 
 func handleRelease(w http.ResponseWriter, req *http.Request) {
+	processes.Add(1)
+	defer processes.Done()
 	http.Error(w, "", http.StatusNotImplemented)
 }
