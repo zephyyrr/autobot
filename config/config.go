@@ -23,16 +23,17 @@ const (
 type Type string
 
 const (
-	Command Type = "command" // Calls <Command>
-	Install      = "install" // Calls go install <Package>
-	Test         = "test"    //Calls go test <Package>
+	Shell  Type = "shell"  // Calls <Command>
+	Go          = "go"     // Calls go install <Package>
+	Docker      = "docker" //Calls go test <Package>
 )
 
 type Action struct {
 	Type Type
+	Command
 	//Filter Filter
 
-	Payload string
+	Parameter string
 }
 
 type Filter struct {
@@ -53,13 +54,13 @@ func DefautlConfig() (c Config) {
 		Port:    8080,
 		Events: map[string][]Action{
 			Deployment: []Action{
-				Action{Type: Test, Payload: "github.com/zephyyrr/autobot"},
-				Action{Type: Install, Payload: "github.com/zephyyrr/autobot"},
-				Action{Type: Command, Payload: "echo 'test'"},
+				Action{Type: Go, Command, Parameter: "github.com/zephyyrr/autobot"},
+				Action{Type: Install, Command: "install", Parameter: "github.com/zephyyrr/autobot"},
+				Action{Type: Shell, Command: "echo", Parameter: "test"},
 			},
 			Push: []Action{
-				Action{Type: Install, Payload: "github.com/zephyyrr/autobot"},
-				Action{Type: Install, Payload: "github.com/zephyyrr/goda"},
+				Action{Type: Go, Command: Install, Parameter: "github.com/zephyyrr/autobot"},
+				Action{Type: Go, Command: Install, Parameter: "github.com/zephyyrr/goda"},
 			},
 		},
 	}
